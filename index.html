@@ -1,0 +1,169 @@
+<html>
+<head>
+	<title>LangoBot</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var accessToken = "26f1875536104c30a2753fdc8bceec37";
+		var baseUrl = "https://api.api.ai/v1/";
+		var messageInternalError = "Oh no, there has been an internal server error";
+		$(document).ready(function() {
+			$("#input").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+				}
+			});
+			$("#rec").click(function(event) {
+				switchRecognition();
+			});
+		});
+
+		var recognition;
+
+		function startRecognition() {
+			recognition = new webkitSpeechRecognition();
+			recognition.onstart = function(event) {
+				updateRec();
+			};
+			recognition.onresult = function(event) {
+				var text = "";
+			    for (var i = event.resultIndex; i < event.results.length; ++i) {
+			    	text += event.results[i][0].transcript;
+			    }
+			    setInput(text);
+				stopRecognition();
+			};
+			recognition.onend = function() {
+				stopRecognition();
+			};
+			recognition.lang = "en-US";
+			recognition.start();
+		}
+	
+		function stopRecognition() {
+			if (recognition) {
+				recognition.stop();
+				recognition = null;
+			}
+			updateRec();
+		}
+
+		function switchRecognition() {
+			if (recognition) {
+				stopRecognition();
+			} else {
+				startRecognition();
+			}
+		}
+
+		function setInput(text) {
+			$("#input").val(text);
+			send();
+		}
+
+		function updateRec() {
+			$("#rec").text(recognition ? "Stop" : "Speak");
+		}
+
+		function send() {
+			var text = $("#input").val();
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query?v=20150910",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ query: text, lang: "en", sessionId: "somethingrandom" }),
+
+				success: function(data) {
+					var json = JSON.parse(JSON.stringify(data, undefined, 2));
+					console.log(json);
+					var response = json["result"]["fulfillment"]["messages"];
+					var input = json["result"]["resolvedQuery"];
+					var pull = json["result"]["parameters"];
+					console.log(pull);
+
+					var text = "";
+					var button = "";
+					var image = "";
+					var pullImage = "";
+
+					for(var key in response){
+						if(response[key].hasOwnProperty("speech")){
+							text = text + response[key]["speech"] + "\n"
+						}
+					}
+
+					$(".container").append("<div class='row row2'><div class='user-input'>" + input + "</div></div>");
+					$(".container").append("<div class='row'><div class='reply'>" + text + "</div></div>");
+
+					for(var key in response){
+						if (response[key].hasOwnProperty("imageUrl")){
+							image = response[key]["imageUrl"];
+							$(".container").append("<div class='row'><img class='image' src='" + image + "'/></div>");
+						}
+					}
+
+					for(item in pull){
+						if(pull.hasOwnProperty("order")){
+							pullImage = "images/" + pull[item] + ".png";
+							console.log(pullImage);
+							$(".container").append("<div class='row'><img class='localImage' src='" + pullImage + "'/></div>");
+						}
+					}
+
+					$('#chat-scroll').animate({scrollTop: $('#chat-scroll').get(0).scrollHeight}, 100);
+					
+					$("#input").val("");
+					prepareResponse(text)
+				},
+				error: function() {
+					respond(messageInternalError);
+					setResponse("Internal Server Error");
+				}
+			});
+			setResponse("...");
+		}
+
+		function setResponse(val) {
+			$(".response").html(val);
+		}
+	function prepareResponse(val) {
+      respond(val);
+
+    }
+    function respond(val) {
+      if (val == "") {
+        val = messageSorry;
+      }
+
+        var msg = new SpeechSynthesisUtterance();
+        msg.voiceURI = "native";
+        msg.text = val;
+        msg.lang = "en-US";
+        window.speechSynthesis.speak(msg);
+	}
+
+
+	</script>
+</head>
+<body>
+	<div id="header"></div>
+
+	<div id="chat-scroll" class="container"></div>
+
+	<div class="bottom-bar">
+	<input id="input" type="text" placeholder="Type in a Message"> <button id="rec">Speak</button>
+	</div>
+
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:200" rel="stylesheet" type="text/css">
+</body>
+</html>
