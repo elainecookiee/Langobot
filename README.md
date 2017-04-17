@@ -9,7 +9,9 @@ Click this link to chat with [Langobot](http://tranela.dev.fast.sheridanc.on.ca/
 
 ### I. Planning
 
-1. Plan your bot's content and logic using a visual build for multi-platform messaging such as[TextIt](https://textit.in/). Incorporate your own assets and links.
+1. Plan your bot's content and logic using a visual build for multi-platform messaging such as [TextIt](https://textit.in/).
+
+![textit](/images/textit.png)
 
 2. Create your own assets and links.
 
