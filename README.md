@@ -29,6 +29,8 @@ You can read more about these Key Concepts in API.ai's [documentation](https://d
 
 8. Train your bot by matching dialogue with the correct Intent.
 
+
+
 ![apiai](/images/apiai.png)
 
 
@@ -44,5 +46,9 @@ This list of SDKs recommended by API.ai can be found [here](https://docs.api.ai/
 2. Create functions in the JavaScript file to check for text or image content and display results dynamically in the DOM using DOM manipulation.
 
 3. Create your own interface by adding a stylesheet using CSS.
+
+
+
+![sdk](/images/sdk.png)
 
 
