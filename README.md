@@ -49,6 +49,6 @@ This list of SDKs recommended by API.ai can be found [here](https://docs.api.ai/
 
 
 
-![sdk](/images/sdk.png)
+![sdk](/images/SDK.png)
 
 
