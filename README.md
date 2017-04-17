@@ -1,4 +1,4 @@
-![Bakery](/images/langobot.png)
+![Langobot](/images/langobot.png)
 
 # Langobot
 A conversational language learning bot using API.ai and an HTML JS sdk. Currently the application only supports English. Other languages will be implemented.
@@ -27,7 +27,11 @@ You can read more about these Key Concepts in API.ai's [documentation](https://d
 
 7. Enable One-Click integrations to connect with third party messaging platforms such as Facebook Messenger, Actions on Google, Amazon Alexa and Slack.
 
+![oneclick](/images/oneclick.png)
+
 8. Train your bot by matching dialogue with the correct Intent.
+
+![apiai](/images/apiai.png)
 
 
 
