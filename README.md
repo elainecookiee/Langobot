@@ -7,7 +7,15 @@ Click this link to chat with [Langobot](http://tranela.dev.fast.sheridanc.on.ca/
 
 ## Instructions - How to build your own chatbot!
 
-### I. Setup AI Dialogue using API.ai
+### I. Planning
+
+1. Plan your bot's content and logic using a visual build for multi-platform messaging such as[TextIt](https://textit.in/). Incorporate your own assets and links.
+
+2. Create your own assets and links.
+
+![story](/images/story.png)
+
+### II. Setup AI Dialogue using API.ai
 
 #### Steps:
 
@@ -29,13 +37,10 @@ You can read more about these Key Concepts in API.ai's [documentation](https://d
 
 8. Train your bot by matching dialogue with the correct Intent.
 
-
-
 ![apiai](/images/apiai.png)
 
 
-
-### II. Download the HTML and JavaScript example SDK to build your own interface!
+### III. Download the HTML and JavaScript example SDK to build your own interface!
 
 This list of SDKs recommended by API.ai can be found [here](https://docs.api.ai/docs/sdks)
 
