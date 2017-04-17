@@ -48,7 +48,7 @@ This list of SDKs recommended by API.ai can be found [here](https://docs.api.ai/
 3. Create your own interface by adding a stylesheet using CSS.
 
 
+![sdk](/images/htmljs.png)
 
-![sdk](/images/SDK.png)
 
 
