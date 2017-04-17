@@ -1,4 +1,4 @@
-![Bakery](/images/bakery.png)
+![Bakery](/images/langobot.png)
 
 # Langobot
 A conversational language learning bot using API.ai and an HTML JS sdk. Currently the application only supports English. Other languages will be implemented.
