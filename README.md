@@ -1,3 +1,5 @@
+![Bakery](/images/bakery.png)
+
 # Langobot
 A conversational language learning bot using API.ai and an HTML JS sdk. Currently the application only supports English. Other languages will be implemented.
 
@@ -29,7 +31,7 @@ You can read more about these Key Concepts in API.ai's [documentation](https://d
 
 
 
-### I. Download the HTML and JavaScript example SDK to build your own interface!
+### II. Download the HTML and JavaScript example SDK to build your own interface!
 
 This list of SDKs recommended by API.ai can be found [here](https://docs.api.ai/docs/sdks)
 
